@@ -12,11 +12,11 @@ export const clearAdminToken = () => {
 
 export const apiRequest = async (path: string, options: RequestInit = {}) => {
   const res = await fetch(`${API_BASE}${path}`, {
+    ...options,
     headers: {
       'Content-Type': 'application/json',
       ...(options.headers || {}),
     },
-    ...options,
   });
 
   if (!res.ok) {

@@ -354,6 +354,37 @@ textarea.form-control {
   }
 }
 
+@media (max-width: 900px) {
+  .about-story-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+  }
+  .about-values-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .about-value-card {
+    flex-direction: column !important;
+  }
+  .about-value-card-image {
+    width: 100% !important;
+    height: 200px !important;
+  }
+  .about-value-card-content {
+    width: 100% !important;
+  }
+  .dest-tour-card {
+    grid-template-columns: 1fr !important;
+  }
+  .dest-tour-card-image {
+    min-height: 250px !important;
+    order: 1 !important;
+  }
+  .dest-tour-card-content {
+    order: 2 !important;
+    padding: 2rem 1.5rem !important;
+  }
+}
+
 /* Navbar */
 .navbar {
   position: fixed;
@@ -411,6 +442,71 @@ textarea.form-control {
 
 .nav-link:hover {
   color: var(--accent);
+}
+
+/* Navbar Dropdown */
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.dropdown-caret {
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  margin-top: -2px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  left: 0;
+  min-width: 240px;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 200;
+}
+
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-link {
+  display: block;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-link:hover {
+  background-color: rgba(212, 175, 55, 0.1);
+  color: var(--primary);
 }
 
 /* Admin Navbar */

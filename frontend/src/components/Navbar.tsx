@@ -28,8 +28,17 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
         </Link>
         <div className="nav-links">
           <Link to="/" className="nav-link">Home</Link>
-          <Link to="/tours" className="nav-link">About Us</Link>
-          <Link to="/destinations" className="nav-link">Tours</Link>
+          <Link to="/about" className="nav-link">About Us</Link>
+          <div className="nav-dropdown">
+            <button type="button" className="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+              Tours <span className="dropdown-caret" />
+            </button>
+            <div className="dropdown-menu">
+              <Link to="/destinations" className="dropdown-link">Sri Lanka Tour Packages</Link>
+              <Link to="/destinations" className="dropdown-link">Special Interest Tours</Link>
+              <Link to="/destinations" className="dropdown-link">Sri Lanka Day Tours</Link>
+            </div>
+          </div>
           <Link to="/destinations" className="nav-link">Blog</Link>
           <Link to="/tailor-made" className="nav-link" style={scrolled ? { color: 'var(--accent)' } : { borderBottom: '2px solid var(--accent)'}}>Tailor-Made</Link>
           <Link to="/admin" className="nav-link">Admin</Link>

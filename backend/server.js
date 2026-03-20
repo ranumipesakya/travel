@@ -22,11 +22,11 @@ app.use('/api', requestRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-// Database Connection
-connectDB()
-  .then(() => {
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-  })
-  .catch((error) => {
-    console.error('MongoDB connection error:', error);
-  });
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+// Database Connection (non-blocking server startup)
+connectDB().catch((error) => {
+  console.error('MongoDB connection error:', error);
+});

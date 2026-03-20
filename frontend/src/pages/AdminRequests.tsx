@@ -10,6 +10,7 @@ import { apiRequest, clearAdminToken, getAdminToken } from '../utils/api';
 
 type TourRequest = {
   _id: string;
+  tourType?: 'mini-tour' | 'cultural-heritage' | 'general';
   travelDates: string;
   guestsCount: string;
   roomsRequirements: string;
@@ -19,6 +20,7 @@ type TourRequest = {
   lastName: string;
   email: string;
   phone?: string;
+  status?: 'pending' | 'accepted' | 'rejected';
   createdAt: string;
 };
 
@@ -56,6 +58,19 @@ const AdminRequests = () => {
   const filteredRequests = requests.filter(req => 
     `${req.firstName} ${req.lastName} ${req.email}`.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const updateStatus = async (id: string, status: 'accepted' | 'rejected') => {
+    try {
+      const updated = await apiRequest(`/requests/${id}/status`, {
+        method: 'PATCH',
+        headers: { Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ status }),
+      });
+      setRequests((prev) => prev.map((r) => (r._id === id ? updated : r)));
+    } catch (err) {
+      setError((err as Error).message);
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -206,9 +221,27 @@ const AdminRequests = () => {
                         <span>{new Date(r.createdAt).toLocaleString()}</span>
                       </div>
                     </div>
+                    <span style={{
+                      fontSize: '0.7rem',
+                      textTransform: 'uppercase',
+                      letterSpacing: '1px',
+                      padding: '0.35rem 0.6rem',
+                      borderRadius: '999px',
+                      background: r.status === 'accepted' ? 'rgba(34,197,94,0.15)'
+                        : r.status === 'rejected' ? 'rgba(239,68,68,0.15)'
+                        : 'rgba(212,175,55,0.15)',
+                      color: r.status === 'accepted' ? '#166534'
+                        : r.status === 'rejected' ? '#991b1b'
+                        : 'var(--accent)'
+                    }}>
+                      {r.status || 'pending'}
+                    </span>
                   </div>
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', flexGrow: 1 }}>
+                    <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--text-muted)' }}>
+                      Tour: <span style={{ color: 'var(--text-main)', fontWeight: 600 }}>{r.tourType || 'general'}</span>
+                    </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                         <div style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', padding: '0.5rem', borderRadius: '8px', color: 'var(--accent)' }}><Calendar size={18} /></div>
@@ -262,6 +295,40 @@ const AdminRequests = () => {
                         <a href={`tel:${r.phone}`} style={{ fontSize: '0.85rem', color: 'var(--primary)', textDecoration: 'none' }}>{r.phone}</a>
                       </div>
                     )}
+                    <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.75rem' }}>
+                      <button
+                        onClick={() => updateStatus(r._id, 'accepted')}
+                        disabled={r.status === 'accepted'}
+                        style={{
+                          flex: 1,
+                          padding: '0.6rem 0.75rem',
+                          borderRadius: '8px',
+                          border: '1px solid #16a34a',
+                          background: r.status === 'accepted' ? '#dcfce7' : '#16a34a',
+                          color: r.status === 'accepted' ? '#166534' : '#fff',
+                          fontWeight: 600,
+                          cursor: r.status === 'accepted' ? 'default' : 'pointer'
+                        }}
+                      >
+                        Accept
+                      </button>
+                      <button
+                        onClick={() => updateStatus(r._id, 'rejected')}
+                        disabled={r.status === 'rejected'}
+                        style={{
+                          flex: 1,
+                          padding: '0.6rem 0.75rem',
+                          borderRadius: '8px',
+                          border: '1px solid #dc2626',
+                          background: r.status === 'rejected' ? '#fee2e2' : '#dc2626',
+                          color: r.status === 'rejected' ? '#991b1b' : '#fff',
+                          fontWeight: 600,
+                          cursor: r.status === 'rejected' ? 'default' : 'pointer'
+                        }}
+                      >
+                        Reject
+                      </button>
+                    </div>
                   </div>
                 </motion.div>
               ))}
