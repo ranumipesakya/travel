@@ -2,76 +2,86 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import Navbar from '../components/Navbar'; 
+import negomboImg from '../assets/negombo.jpg';
+import sigiriyaImg from '../assets/sigiriya.jpg';
+import dambullaImg from '../assets/Dambulla.jpg';
+import pinnawalaImg from '../assets/pinnawala.jpg';
+import scenicImg from '../assets/scenic.jpg';
+import ellaImg from '../assets/ella.jpg';
+import yalaImg from '../assets/yala.jpg';
+import galleImg from '../assets/Galle.jpg';
+import beachImg from '../assets/tour.jpg';
+import ultimateImg from '../assets/Ultimate.webp';
 
 const Scenic: React.FC = () => {
   const itinerary = [
     {
       day: "Day 1",
       title: "Colombo airport - Negombo",
-      image: "https://images.unsplash.com/photo-1620216669947-975ded0f7b53?q=80&w=1000",
+      image: negomboImg,
       text: "Meet your guide on arrival. Transfer to a beach hotel in Negombo, visit a fishing village or at leisure in the beach . Overnight stay in Negombo.",
       reversed: false
     },
     {
       day: "Day 2",
       title: "Sigiriya - Traditional village visit",
-      image: "https://images.unsplash.com/photo-1588614959060-4d144f28b2ea?q=80&w=1000",
+      image: sigiriyaImg,
       text: "After breakfast checkout from the hotel and leave to visit Sigiriya rock fortress, one of Sri Lanka's most fascinating UNESCO world heritage sites. No matter how often you climb to the summit of this one-time hilltop fortress of the maverick Sinhalese king, Kassapa, the pleasure barely diminishes because of the abandon spectacular views at the summit. In afternoon, visit a traditional village in Habarana. This program is designed for you to experience the real traditional Sri Lankan rural village style, where you will travel in a Bullock cart to a rural village. This program is highly recommended as a \"must do\" activity to get feel the real Sri Lanka. Overnight stay in Sigiriya.",
       reversed: true
     },
     {
       day: "Day 3",
       title: "Dambulla - Kandy",
-      image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1000",
+      image: dambullaImg,
       text: "After breakfast travel to Kandy another fascinating city of Sri Lanka. En route visit Dambulla cave temple, which contains more than 150 Statues of the Buddha. This was where a king of the 1st Century B.C. took refuge and latter converted them into a monastery In Kandy visit temple of tooth. This temple, the most important one for The Sri Lankan Buddhists was built in the 16th Century A.D, solely for the purpose of housing the tooth relic. Observe the magnificent Architecture of that period and experience the tranquility of the atmosphere. In evening witness a spectacular Sri Lankan cultural show. Overnight stay in Kandy.",
       reversed: false
     },
     {
       day: "Day 4",
       title: "Pinnawala - Peradeniya – Kandy city tour",
-      image: "https://images.unsplash.com/photo-1600213123849-c1e19ebadd96?q=80&w=1000",
+      image: pinnawalaImg,
       text: "After breakfast travel to visit pinnawala elephant orphanage, The foster – home of elephants of different age and size feed, bathe, play together and even mate. These great animals have been found injured or left abandoned in the wilderness. Now they even breed in captivity. And then visit peradeniya botanical garden, which was a pleasure garden of a Kandyan King of the 16th Century and later made in to a Botanical Garden during the British regime. This garden, one of the best in Asia is a place of beauty and site for bird watchers. In evening do a city tour in Kandy. Overnight stay in Kandy.",
       reversed: true
     },
     {
       day: "Day 5",
       title: "Nuwara Eliya",
-      image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=1000",
+      image: scenicImg,
       text: "After breakfast, travel deeper into the tea-growing hills and have the option to wind through the mountains with magnificent views. En-route to Nuwara Eliya you will visit Ramboda waterfall and a factory of the popular Sri Lankan Tea. Arrive in Nuwara Eliya to be greeted by the fresh wintry atmosphere, the cottage type bungalows and the colonial air. ( Nuwara Eliya is also known as “Little England”) Overnight stay in Nuwara Eliya.",
       reversed: false
     },
     {
       day: "Day 6",
       title: "Horton’s plains - Ella",
-      image: "https://images.unsplash.com/photo-1569438019183-ae5f25ad27c5?q=80&w=1000",
+      image: ellaImg,
       text: "Early in the morning travel to explore the Horton’s plains national park. Horton’s plains offers some excellent hikes in an unusual environment, characterized by forest patches, grasslands and some high-altitude vegetation. Highlights include the dramatic 880 metre drop at World's End and the beautiful Baker's Falls. In afternoon travel to Ella for overnight stay.",
       reversed: true
     },
     {
       day: "Day 7",
       title: "Yala National Park",
-      image: "https://images.unsplash.com/photo-1544833215-6809793ee5ac?q=80&w=1000",
+      image: yalaImg,
       text: "After breakfast you travel to Yala. En-route visit famous Ella gap and enjoy the most beautiful sceneries in the Sri Lanka highlands. In afternoon, explore the Yala national wildlife park. Yala is one of Sri Lanka 's premier eco tourism destinations, where you can watch closely Leopard, Elephants and unique varieties of Birds. Overnight stay in Yala.",
       reversed: false
     },
     {
       day: "Day 8",
       title: "Galle - Beach stay",
-      image: "https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=1000",
+      image: galleImg,
       text: "Travel to a beach resort for your beach holiday. En-route visit Galle fort, which was built first in 1588 by the Portuguese, then extensively fortified by the Dutch during the 17th century. Then visit a turtle hatchery in the southern cost. These sea turtle hatcheries are for the survival of sea turtles for the next generation. In the afternoon, relax at your beach resort. Overnight stay at a beach resort.",
       reversed: true
     },
     {
       day: "Day 9",
       title: "Beach",
-      image: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?q=80&w=1000",
+      image: beachImg,
       text: "Beach Stay with many choices of spending your time. Leisurely strolling on the Golden Beaches enthralled in the magical atmosphere. Lazing on a Sun deck reading a book of you choice, and sipping a cool fresh tropical fruit drink of pine apple, Mango, Banana. Water skiing, Wind Surfing, Snorkeling or cutting through the choppy on a jet water scooter, whale watching trips and much more... (only if you wish, not included in the package price)",
       reversed: false
     },
     {
       day: "Day 10",
       title: "Beach - Airport",
-      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000",
+      image: ultimateImg,
       text: "Leave Air port for Departure.",
       reversed: true
     }
@@ -159,7 +169,7 @@ const Scenic: React.FC = () => {
       <section style={{
         position: 'relative',
         padding: '100px 20px',
-        backgroundImage: 'url("https://images.unsplash.com/photo-1586902197503-e71026292412?q=80&w=2000")', 
+        backgroundImage: `url(${scenicImg})`, 
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
