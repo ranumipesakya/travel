@@ -36,13 +36,13 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
             <div className="dropdown-menu">
               <Link to="/destinations" className="dropdown-link">Sri Lanka Tour Packages</Link>
               <Link to="/special-interest" className="dropdown-link">Special Interest Tours</Link>
-              <Link to="/destinations" className="dropdown-link">Sri Lanka Day Tours</Link>
+              <Link to="/day-tour" className="dropdown-link">Sri Lanka Day Tours</Link>
             </div>
           </div>
           <Link to="/destinations" className="nav-link">Blog</Link>
           <Link to="/tailor-made" className="nav-link" style={scrolled ? { color: 'var(--accent)' } : { borderBottom: '2px solid var(--accent)'}}>Tailor-Made</Link>
           <Link to="/admin" className="nav-link">Admin</Link>
-          <Link to="#contact" className="btn btn-primary" style={{color: '#fff'}}>Contact Us</Link>
+          <Link to="/contact" className="btn btn-primary" style={{color: '#fff'}}>Contact Us</Link>
         </div>
       </div>
     </nav>

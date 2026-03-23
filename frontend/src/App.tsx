@@ -11,9 +11,11 @@ import Ayurveda from './pages/Ayurveda';
 import Ultimate from './pages/Ultimate';
 import SpecialInterest from './pages/SpecialInterest';
 import TourBooking from './pages/TourBooking';
+import DayTour from './pages/DayTour';
 import AdminLogin from './pages/AdminLogin';
 import AdminRegister from './pages/AdminRegister';
 import AdminRequests from './pages/AdminRequests';
+import ContactUs from './pages/ContactUs';
 
 function App() {
   return (
@@ -30,7 +32,9 @@ function App() {
         <Route path="/ayurveda-tour" element={<Ayurveda />} />
         <Route path="/ultimate-sri-lanka" element={<Ultimate />} />
         <Route path="/special-interest" element={<SpecialInterest />} />
+        <Route path="/day-tour" element={<DayTour />} />
         <Route path="/book-tour" element={<TourBooking />} />
+        <Route path="/contact" element={<ContactUs />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/admin/register" element={<AdminRegister />} />
         <Route path="/admin/requests" element={<AdminRequests />} />

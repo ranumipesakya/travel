@@ -5,6 +5,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const requestRoutes = require('./routes/requestRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 const { notFound, errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.json());
 // Routes
 app.use('/api', adminRoutes);
 app.use('/api', requestRoutes);
+app.use('/api', contactRoutes);
 
 // Error Handling
 app.use(notFound);
