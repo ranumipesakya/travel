@@ -577,6 +577,26 @@ const DestinationPage: React.FC = () => {
                         >
                           Enquire Now <ArrowRight size={16} />
                         </Link>
+                      ) : tour.title === "Ultimate Sri Lanka" ? (
+                        <Link
+                          to="/ultimate-sri-lanka"
+                          style={{
+                            display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
+                            background: tour.color,
+                            color: '#fff',
+                            padding: '0.85rem 2rem',
+                            borderRadius: '50px',
+                            fontSize: '0.85rem',
+                            fontWeight: 600,
+                            letterSpacing: '0.5px',
+                            textTransform: 'uppercase',
+                            textDecoration: 'none',
+                            boxShadow: `0 8px 25px ${tour.color}40`,
+                            transition: 'box-shadow 0.3s ease'
+                          }}
+                        >
+                          Enquire Now <ArrowRight size={16} />
+                        </Link>
                       ) : (
                         <a
                           href="/#start-planning"
