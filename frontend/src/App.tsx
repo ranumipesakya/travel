@@ -9,6 +9,7 @@ import Best from './pages/Best';
 import Scenic from './pages/Scenic';
 import Ayurveda from './pages/Ayurveda';
 import Ultimate from './pages/Ultimate';
+import SpecialInterest from './pages/SpecialInterest';
 import AdminLogin from './pages/AdminLogin';
 import AdminRegister from './pages/AdminRegister';
 import AdminRequests from './pages/AdminRequests';
@@ -27,6 +28,7 @@ function App() {
         <Route path="/scenic-sri-lanka" element={<Scenic />} />
         <Route path="/ayurveda-tour" element={<Ayurveda />} />
         <Route path="/ultimate-sri-lanka" element={<Ultimate />} />
+        <Route path="/special-interest" element={<SpecialInterest />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/admin/register" element={<AdminRegister />} />
         <Route path="/admin/requests" element={<AdminRequests />} />

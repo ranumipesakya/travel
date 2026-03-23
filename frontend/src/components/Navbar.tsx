@@ -35,7 +35,7 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
             </button>
             <div className="dropdown-menu">
               <Link to="/destinations" className="dropdown-link">Sri Lanka Tour Packages</Link>
-              <Link to="/destinations" className="dropdown-link">Special Interest Tours</Link>
+              <Link to="/special-interest" className="dropdown-link">Special Interest Tours</Link>
               <Link to="/destinations" className="dropdown-link">Sri Lanka Day Tours</Link>
             </div>
           </div>
