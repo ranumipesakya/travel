@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MessageCircle, ArrowRight, ChevronDown } from 'lucide-react';
+import { MessageCircle, ArrowRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
-import { apiRequest } from '../utils/api';
 import cultureImg from '../assets/cultural3.jpg';
 import ayurvedaImg from '../assets/yoga.webp';
 import scenicImg from '../assets/scenic.jpg';
@@ -58,63 +58,6 @@ const tours = [
 ];
 
 const SpecialInterest: React.FC = () => {
-  const [selectedTour, setSelectedTour] = useState("Loading...");
-  const [formData, setFormData] = useState({
-    arrival: '',
-    departure: '',
-    adults: '',
-    children11: '',
-    children5: '',
-    rooms: '',
-    accommodation: 'Budget Guesthouses',
-    requests: '',
-    name: '',
-    email: '',
-    phone: '',
-    country: ''
-  });
-  const [status, setStatus] = useState<string | null>(null);
-
-  const FORM_ID = "booking-form";
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('Submitting...');
-    try {
-      const travelDates = `${formData.arrival} to ${formData.departure}`;
-      const guestsCount = `Adults: ${formData.adults}, Children 06-11: ${formData.children11}, Children <05: ${formData.children5}`;
-      const nameParts = formData.name.split(' ');
-      const firstName = nameParts[0] || 'Unknown';
-      const lastName = nameParts.slice(1).join(' ') || 'Unknown';
-      
-      const payload = {
-        travelDates,
-        guestsCount,
-        roomsRequirements: formData.rooms || 'Not specified',
-        accommodationPreferences: formData.accommodation,
-        interests: `Tour: ${selectedTour} | Country: ${formData.country} | Custom Requests: ${formData.requests}`,
-        firstName,
-        lastName,
-        email: formData.email,
-        phone: formData.phone,
-        tourType: 'special-interest'
-      };
-
-      await apiRequest('/requests', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      
-      setStatus('Success! We will contact you soon.');
-      setFormData({
-        arrival: '', departure: '', adults: '', children11: '', children5: '', rooms: '', accommodation: 'Budget Guesthouses', requests: '', name: '', email: '', phone: '', country: ''
-      });
-    } catch (err: any) {
-      setStatus('Failed to submit: ' + err.message);
-    }
-  };
-
   return (
     <div style={{ backgroundColor: '#f9fafb', minHeight: '100vh', fontFamily: '"Inter", sans-serif' }}>
       <Navbar variant="dark" />
@@ -246,12 +189,8 @@ const SpecialInterest: React.FC = () => {
                 </p>
 
                 {/* Let's Talk Button */}
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setSelectedTour(tour.title);
-                    document.getElementById(FORM_ID)?.scrollIntoView({ behavior: 'smooth' });
-                  }}
+                <Link
+                  to={`/book-tour?tour=${encodeURIComponent(tour.title)}`}
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -261,8 +200,6 @@ const SpecialInterest: React.FC = () => {
                     color: '#fff',
                     padding: '12px 25px',
                     borderRadius: '50px',
-                    border: 'none',
-                    cursor: 'pointer',
                     textDecoration: 'none',
                     fontWeight: 600,
                     fontSize: '0.9rem',
@@ -270,99 +207,15 @@ const SpecialInterest: React.FC = () => {
                     textTransform: 'uppercase',
                     transition: 'all 0.3s ease'
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#d4af37'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0a3a40'}
+                  onMouseEnter={(e: any) => e.currentTarget.style.backgroundColor = '#d4af37'}
+                  onMouseLeave={(e: any) => e.currentTarget.style.backgroundColor = '#0a3a40'}
                 >
                   <MessageCircle size={18} />
                   Let's Talk
-                </button>
+                </Link>
               </div>
             </motion.div>
           ))}
-        </div>
-      </section>
-
-      {/* Tour Details Form Section */}
-      <section style={{
-        position: 'relative',
-        padding: '100px 20px',
-        backgroundColor: '#eef2f3', 
-        display: 'flex',
-        justifyContent: 'center'
-      }}>
-        <div id={FORM_ID} style={{
-          backgroundColor: '#fff',
-          width: '100%',
-          maxWidth: '680px',
-          borderRadius: '20px',
-          padding: '50px 45px',
-          boxShadow: '0 30px 60px rgba(0,0,0,0.08)'
-        }}>
-          <h2 style={{ fontSize: '1.6rem', fontWeight: 700, marginBottom: '10px', color: '#333' }}>Tour Details</h2>
-          <div style={{ padding: '15px', backgroundColor: '#f0fdf4', borderLeft: '4px solid #16a34a', marginBottom: '30px', borderRadius: '4px' }}>
-            <p style={{ margin: 0, fontSize: '0.95rem', color: '#166534', fontWeight: 600 }}>Your Special Interest Tour:</p>
-            <p style={{ margin: '5px 0 0 0', fontSize: '1.1rem', color: '#14532d', fontWeight: 700 }}>{selectedTour}</p>
-          </div>
-
-          {status && (
-            <div style={{ padding: '15px', backgroundColor: status.includes('Success') ? '#dcfce7' : '#fee2e2', color: status.includes('Success') ? '#166534' : '#991b1b', borderRadius: '8px', marginBottom: '20px', fontWeight: 600 }}>
-              {status}
-            </div>
-          )}
-          
-          <form style={{ display: 'flex', flexDirection: 'column', gap: '22px' }} onSubmit={handleSubmit}>
-            {/* Arrival/Departure */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-              <div>
-                <label style={labelStyle}>Date of Arrival *</label>
-                <input type="text" placeholder="mm/dd/yyyy" style={inputStyle} value={formData.arrival} onChange={e => setFormData({...formData, arrival: e.target.value})} required />
-              </div>
-              <div>
-                <label style={labelStyle}>Date of Departure *</label>
-                <input type="text" placeholder="mm/dd/yyyy" style={inputStyle} value={formData.departure} onChange={e => setFormData({...formData, departure: e.target.value})} required />
-              </div>
-            </div>
-
-            {/* Guests Section */}
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginTop: '10px', color: '#333' }}>Number of Guests</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              <input type="text" placeholder="Adults *" style={inputStyle} value={formData.adults} onChange={e => setFormData({...formData, adults: e.target.value})} required />
-              <input type="text" placeholder="Children (06 – 11 Years)" style={inputStyle} value={formData.children11} onChange={e => setFormData({...formData, children11: e.target.value})} />
-              <input type="text" placeholder="Children (below 05 Years)" style={inputStyle} value={formData.children5} onChange={e => setFormData({...formData, children5: e.target.value})} />
-              <input type="text" placeholder="Number of Rooms Required *" style={inputStyle} value={formData.rooms} onChange={e => setFormData({...formData, rooms: e.target.value})} required />
-            </div>
-
-            {/* Accommodation */}
-            <div style={{ marginTop: '10px' }}>
-              <label style={labelStyle}>Accommodation Preferences</label>
-              <div style={{ position: 'relative' }}>
-                <select style={{ ...inputStyle, appearance: 'none' }} value={formData.accommodation} onChange={e => setFormData({...formData, accommodation: e.target.value})}>
-                  <option>Budget Guesthouses</option>
-                  <option>2–3 Star Hotels</option>
-                  <option>4–5 Star Hotels</option>
-                  <option>Luxury Resorts / Villas</option>
-                </select>
-                <ChevronDown size={18} style={{ position: 'absolute', right: '15px', top: '15px', color: '#888', pointerEvents: 'none' }} />
-              </div>
-            </div>
-
-            {/* Special Requests */}
-            <textarea placeholder="Special Requests" style={{ ...inputStyle, height: '140px', resize: 'none' }} value={formData.requests} onChange={e => setFormData({...formData, requests: e.target.value})} />
-
-            {/* Personal Info */}
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginTop: '10px', color: '#333' }}>Personal Information</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              <input type="text" placeholder="Name *" style={inputStyle} value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} required />
-              <input type="email" placeholder="Email *" style={inputStyle} value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} required />
-              <input type="text" placeholder="Phone / WhatsApp *" style={inputStyle} value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} required />
-              <input type="text" placeholder="Country *" style={inputStyle} value={formData.country} onChange={e => setFormData({...formData, country: e.target.value})} required />
-            </div>
-
-            {/* Submit Button */}
-            <button type="submit" style={submitButtonStyle}>
-              Design My Custom Tour
-            </button>
-          </form>
         </div>
       </section>
 
@@ -415,38 +268,3 @@ const SpecialInterest: React.FC = () => {
 };
 
 export default SpecialInterest;
-
-const labelStyle: React.CSSProperties = {
-  display: 'block',
-  fontSize: '0.85rem',
-  fontWeight: 700,
-  marginBottom: '8px',
-  color: '#444'
-};
-
-const inputStyle: React.CSSProperties = {
-  width: '100%',
-  padding: '14px 18px',
-  border: '1px solid #ddd',
-  borderRadius: '8px',
-  fontSize: '0.95rem',
-  backgroundColor: '#fff',
-  boxSizing: 'border-box',
-  outline: 'none',
-  color: '#333'
-};
-
-const submitButtonStyle: React.CSSProperties = {
-  backgroundColor: '#7a6b5d',
-  color: 'white',
-  padding: '18px',
-  borderRadius: '50px',
-  border: 'none',
-  fontSize: '1rem',
-  fontWeight: 600,
-  cursor: 'pointer',
-  marginTop: '15px',
-  boxShadow: '0 10px 20px rgba(122, 107, 93, 0.25)',
-  width: '100%',
-  transition: 'transform 0.2s ease'
-};
