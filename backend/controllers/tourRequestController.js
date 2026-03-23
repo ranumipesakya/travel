@@ -4,7 +4,8 @@ const asyncHandler = require('../middleware/asyncHandler');
 const createTourRequest = asyncHandler(async (req, res) => {
   const rawTourType = req.body?.tourType ?? 'general';
   const tourType = String(rawTourType).trim().toLowerCase();
-  if (!['mini-tour', 'cultural-heritage', 'general'].includes(tourType)) {
+  const tourTypeList = ['mini-tour', 'cultural-heritage', 'general', 'special-interest', 'scenic', 'ayurveda', 'ultimate'];
+  if (!tourTypeList.includes(tourType)) {
     res.status(400);
     throw new Error(`Invalid tour type: ${rawTourType}`);
   }

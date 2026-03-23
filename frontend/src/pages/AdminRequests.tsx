@@ -10,7 +10,7 @@ import { apiRequest, clearAdminToken, getAdminToken } from '../utils/api';
 
 type TourRequest = {
   _id: string;
-  tourType?: 'mini-tour' | 'cultural-heritage' | 'general';
+  tourType?: 'mini-tour' | 'cultural-heritage' | 'general' | 'special-interest' | 'scenic' | 'ayurveda' | 'ultimate';
   travelDates: string;
   guestsCount: string;
   roomsRequirements: string;

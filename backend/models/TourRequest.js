@@ -11,7 +11,7 @@ const tourRequestSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   email: { type: String, required: true },
   phone: { type: String, required: false },
-  tourType: { type: String, enum: ['mini-tour', 'cultural-heritage', 'general'], default: 'general' },
+  tourType: { type: String, enum: ['mini-tour', 'cultural-heritage', 'general', 'special-interest', 'scenic', 'ayurveda', 'ultimate'], default: 'general' },
   status: { type: String, enum: ['pending', 'accepted', 'rejected'], default: 'pending' },
   createdAt: { type: Date, default: Date.now }
 });
