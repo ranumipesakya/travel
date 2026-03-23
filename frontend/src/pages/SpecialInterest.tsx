@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle, ArrowRight } from 'lucide-react';
-import Navbar from '../components/Navbar'; 
-import cultureImg from '../assets/culture.jpg';
-import ayurvedaImg from '../assets/Ayurveda.jpg';
+import Navbar from '../components/Navbar';
+import cultureImg from '../assets/cultural3.jpg';
+import ayurvedaImg from '../assets/yoga.webp';
 import scenicImg from '../assets/scenic.jpg';
 import wildlifeImg from '../assets/yala.jpg';
 import adventureImg from '../assets/ella.jpg';
 import pilgrimageImg from '../assets/Dambulla.jpg';
-import campingImg from '../assets/Ultimate.webp'; // Fallback for camping
+import campingImg from '../assets/Camping.jpg';
 import heroImg from '../assets/Cultural 2.jpg';
 
 const tours = [
@@ -118,10 +118,10 @@ const SpecialInterest: React.FC = () => {
 
       {/* Tours Grid Section */}
       <section style={{ padding: '100px 20px', maxWidth: '1200px', margin: '0 auto' }}>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', 
-          gap: '40px' 
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+          gap: '40px'
         }}>
           {tours.map((tour, index) => (
             <motion.div
@@ -151,12 +151,12 @@ const SpecialInterest: React.FC = () => {
             >
               {/* Card Image */}
               <div style={{ height: '260px', overflow: 'hidden', position: 'relative' }}>
-                <img 
-                  src={tour.image} 
-                  alt={tour.title} 
-                  style={{ 
-                    width: '100%', 
-                    height: '100%', 
+                <img
+                  src={tour.image}
+                  alt={tour.title}
+                  style={{
+                    width: '100%',
+                    height: '100%',
                     objectFit: 'cover',
                     transition: 'transform 0.5s ease'
                   }}
@@ -167,19 +167,19 @@ const SpecialInterest: React.FC = () => {
 
               {/* Card Content */}
               <div style={{ padding: '35px 30px', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                <h3 style={{ 
-                  fontSize: '1.6rem', 
-                  fontFamily: '"Playfair Display", serif', 
-                  color: '#1a1a1a', 
+                <h3 style={{
+                  fontSize: '1.6rem',
+                  fontFamily: '"Playfair Display", serif',
+                  color: '#1a1a1a',
                   marginBottom: '15px',
                   fontWeight: 700
                 }}>
                   {tour.title}
                 </h3>
-                
-                <p style={{ 
-                  color: '#666', 
-                  lineHeight: '1.7', 
+
+                <p style={{
+                  color: '#666',
+                  lineHeight: '1.7',
                   fontSize: '0.95rem',
                   marginBottom: '30px',
                   flexGrow: 1
@@ -188,11 +188,11 @@ const SpecialInterest: React.FC = () => {
                 </p>
 
                 {/* Let's Talk Button */}
-                <a 
+                <a
                   href="/tailor-made"
                   style={{
-                    display: 'inline-flex', 
-                    alignItems: 'center', 
+                    display: 'inline-flex',
+                    alignItems: 'center',
                     justifyContent: 'center',
                     gap: '10px',
                     backgroundColor: '#0a3a40',
@@ -221,10 +221,10 @@ const SpecialInterest: React.FC = () => {
       {/* Bottom CTA Banner */}
       <section style={{ backgroundColor: '#0a3a40', padding: '80px 20px', textAlign: 'center' }}>
         <motion.div
-           initial={{ opacity: 0, scale: 0.95 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
           <h2 style={{ color: '#fff', fontSize: '2.5rem', fontFamily: '"Playfair Display", serif', marginBottom: '20px' }}>
             Ready to design your unique experience?
